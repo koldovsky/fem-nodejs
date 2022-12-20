@@ -25,6 +25,12 @@ app.use(cors());
 //     next();
 // });
 
+app.get('/', (req, res, next) => {
+    setTimeout(() => {
+        next(new Error('Sample error'));
+    }, 0);
+});
+
 app.get('/', (req, res) => {
     res.status(200);
     res.json({message: 'Hello'});
@@ -34,5 +40,25 @@ app.use('/api', protect, router);
 
 app.post('/user', createNewUser);
 app.post('/signin', signin);
+
+app.use((err, req, res, next) => {
+    if (err.type === 'input') {
+        res.status(400);
+        res.json({message: 'Bad input'});
+        return;
+    }
+    console.error(err);
+    res.status(500);
+    res.json({message: 'Internal server error'});
+});
+
+process.on('uncaughtException', (err) => {
+    console.error('uncaughtException', err);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.error('unhandledRejection', err);
+});
+
 
 export default app;
