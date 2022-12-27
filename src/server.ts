@@ -25,11 +25,11 @@ app.use(cors());
 //     next();
 // });
 
-app.get('/', (req, res, next) => {
-    setTimeout(() => {
-        next(new Error('Sample error'));
-    }, 0);
-});
+// app.get('/', (req, res, next) => {
+//     setTimeout(() => {
+//         next(new Error('Sample error'));
+//     }, 0);
+// });
 
 app.get('/', (req, res) => {
     res.status(200);
