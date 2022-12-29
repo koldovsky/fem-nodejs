@@ -2,15 +2,12 @@
     "compilerOptions": {
       "sourceMap": true,
       "outDir": "./dist",
-      "target": "es2022",
-      "lib": ["ES2022"],
+      "rootDir": "./src",
+      "strict": false,
+      "lib": ["esnext"],
       "esModuleInterop": true,
-      "module": "ES2022",
-      "moduleResolution": "node",
+      "declaration": true
     },
-    "include": ["src/**/*.ts"],
-    "ts-node": {
-      "esm": true,
-      "experimentalSpecifierResolution": "node",
-    }
+    "include": ["src/**/*.ts"]
   }
+  
